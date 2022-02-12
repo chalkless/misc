@@ -10,9 +10,10 @@ $ sudo yum install git224
 - こちら側の情報をGitHubサイトに登録する
 - パスワード認証は廃止済。ということで公開鍵認証する
 - 公開鍵の作成
-```
-$ ssh-keygen -t rsa
-```
+  ```
+  $ ssh-keygen -t rsa
+  ```
+
   -- 自分の場合はgithub_id_rsa（と〜.pub）を作成
   -- permissionを600にしておく
 - GitHubへの登録
@@ -26,7 +27,7 @@ $ ssh -T git@github.com
 ```
 ```
 （成功した時）
-Hi chalkless! You've successfully authenticated, but GitHub does not provide shell access.
+Hi (account name)! You've successfully authenticated, but GitHub does not provide shell access.
 （失敗した時）
 git@github.com: Permission denied (publickey).
 ```
@@ -38,10 +39,15 @@ $ ssh-add -l
   -- 上記のように返ってこない場合は
 ```
 $ ssh-add github_id_rsa
+（実際はgithub_id_rsaの部分はGitHub用の秘密鍵ファイルを指定する）
 ```
   -- このとき以下のように出る場合は失敗している
 ```
 Could not open a connection to your authentication agent.
+```
+-- 以下のように出るときは気にせずもう一度パスフレーズを打てばよい???
+```
+Bad passphrase, try again for (directory/rsa_key)
 ```
   -- 失敗した場合は以下をまず行う
 ```
