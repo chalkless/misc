@@ -2,10 +2,23 @@
 - DRY本（2版）とか見ればいいんじゃ。。。（とも言ってられないので
 
 
+
+## コマンドを使う用意
+### xcodeのコマンドのインストール
 ```
 $ xcode-select --install
 ```
 - デベロッパーツールを入れるか（GUIな）ポップアップが出るので、同意して進める
+
+### Homebrewのインストール
+- Homebrewでググって指示に従う
+```
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(次のコマンドを実行しろというメッセージが最後に出る)
+$ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/nakazato/.zprofile
+$ eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
 
 
 # shellの設定
