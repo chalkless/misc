@@ -59,4 +59,18 @@ ServerAliveCountMax 3
     User username
     ProxyCommand ssh -p 8080 proxy.server.name -W %h:%p
     ```
+
+# PHPの設定
+```
+$ cat /etc/redhat-release 
+CentOS Linux release 7.9.2009 (Core)
+$ php -v
+PHP 5.4.16 (cli) (built: Apr  1 2020 04:07:17) 
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.4.0, Copyright (c) 1998-2013 Zend Technologies
+```
+古い。2022年5月現在でVer. 8が最新っぽい。
+
+
+
     
