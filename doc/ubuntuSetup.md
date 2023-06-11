@@ -84,19 +84,19 @@ $ sudo systemctl emergency
 - /home　をコピー。日付やpermissionなどなどをうっかり変えられたりして不具合が起きないように cp でなく rsync　を使うのが安全
 
 ```
-$ rsync -auvSAX /home/ /share/home/
+# rsync -auvSAX /home/ /share/home/
 ```
 
 -　元の /home　をバックアップ（しばらくして不具合が出なかったら消す）
 
 ```
-$ mv /home /home_bak
+# mv /home /home_bak
 ```
 
 - マウント先のディレクトリを作成
 
 ```
-$ mkdir /home
+# mkdir /home
 ```
 
 - ディレクトリをディレクトリにマウントというか、強力なシンボリックリンクとしてmountのbindオプションというのがあるらしい。/etc/fstab に記述を追加する
@@ -110,7 +110,7 @@ $ mkdir /home
 - 設定を反映
 
 ```
-$ mount -a
+# mount -a
 ```
 
 - うまくいっているか確認する。lsなりしてみるとか
@@ -118,8 +118,48 @@ $ mount -a
 
 ```
 # 一例
-$ systemctl isolate graphical.target
+# systemctl isolate graphical.target
 ```
 
+## リモートで他端末にログインできるようにするための証明書作成
+-　パスワード認証なら設定は不要。単にSSHすればよろし。
+-　証明書を作成する（シンプルバージョン。rsa形式）
+
+```
+$ ssh-keygen
+（証明書の名前。普通にリターンでよい）
+（パスワード）
+（パスワード再度）
+```
+
+- id_rsa と id_rsa.pub　ができるので、ログイン先に id_rsa.pub　を設置する（authorized_keysに追記する）
+
+- 証明書を作成する（セキュリティが高いバージョン。ecdsa-sha2-nistp256形式）
+
+```
+$ ssh-keygen -t ecdsa -b 256
+```
+
+- id_ecdsa と id_ecdsa.pub　ができる。
+- 普通にsshすれば勝手にどちらの証明書か選んでくれる
 
 
+
+## リモートログインを受け付けられるようにする
+
+```
+$ systemctl status ssh
+# Active (running)　と出れば動いている
+
+# なんかそれっぽいのが出るけどrunningでなかったら起動させる
+$ sudo systemctl enable ssh
+
+#　何それみたいに出てきたらopenssh-serverを入れる
+$ sudo apt install openssh-server
+# これをやれば自動起動も動くと思うが動いてなかったら起動設定をする
+```
+
+## インターネット経由でUbuntuマシンにアクセスできるようにする
+- Ubuntu側の設定としてIPを固定したい。設定のネットワークでIPを固定にしたのだが、ゲートウェイの設定かDNSの設定かインターネットが疎通せず
+- どちらにしろルーターでポートフォワーディングの設定をしないといけない。２２番ポートをUbuntuマシン用に振り出したIPにフォワードするようにしておく
+- ついでにルーターのDHCP設定で（今回の場合だが）MACアドレスとIPを指定すれば固定IPとして自動で振ってくれるようなので、UbuntuはDHCPで設定取得することとしてルーター側で固定にすることで解決
