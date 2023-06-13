@@ -5,6 +5,10 @@
 ```
 $ sudo yum install git224
 ```
+- UbuntuなどのDebian系ならaptを使う
+```
+$ sudo apt install git
+```
 
 ## GitHubとの連携（公開鍵登録編）
 - こちら側の情報をGitHubサイトに登録する
