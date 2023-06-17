@@ -48,17 +48,18 @@ $ ssh-keygen -t rsa
 - 多段接続の設定
     - `~/.ssh/config`に設定を書く
     - 雑：
-    ```
+```
 ServerAliveInterval 60
 ServerAliveCountMax 3
-    ```
-    - 多段接続（例）
-    ```
-    Host target_nickname
-    HostName target.server.name
-    User username
-    ProxyCommand ssh -p 8080 proxy.server.name -W %h:%p
-    ```
+```
+    
+- 多段接続（例）
+```
+Host target_nickname
+HostName target.server.name
+User username
+ProxyCommand ssh -p 8080 proxy.server.name -W %h:%p
+```
 
 # PHPの設定
 ```
