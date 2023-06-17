@@ -30,7 +30,8 @@ $ conda config --add channels bioconda
 $ conda install -c bioconda fastqc
 $ conda install -c biocond trim_galore
 ```
-    - trinityはそのままだと古いバージョンが入ってしまうのでバージョンも指定
+
+- trinityはそのままだと古いバージョンが入ってしまうのでバージョンも指定
 ```
 $ conda install trinity=2.13.2
 ```
