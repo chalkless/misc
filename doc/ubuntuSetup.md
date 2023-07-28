@@ -133,7 +133,6 @@ $ ssh-keygen
 ```
 
 - id_rsa と id_rsa.pub　ができるので、ログイン先に id_rsa.pub　を設置する（authorized_keysに追記する）
-
 - 証明書を作成する（セキュリティが高いバージョン。ecdsa-sha2-nistp256形式）
 
 ```
