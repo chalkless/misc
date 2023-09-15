@@ -2,6 +2,6 @@
 
 |OS|インストール|管理|
 |---|---|---|
-|CentOS|[centosSetup.md](doc/centosSetup.md)||
-|Ubuntu|[ubuntuSetup.md](doc/ubuntuSetup.md)|[ubuntuMaintenance.md](doc/ubuntuMaintenance.md)|
-|Mac|[macSetup.md](doc/macSetup.md)||
+|CentOS|[centosSetup.md](centosSetup.md)||
+|Ubuntu|[ubuntuSetup.md](ubuntuSetup.md)|[ubuntuMaintenance.md](ubuntuMaintenance.md)|
+|Mac|[macSetup.md](macSetup.md)||
