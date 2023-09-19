@@ -26,6 +26,9 @@ $ sudo reboot
 
 - reboot指示の中身
 ```
-$ cat /var/run/reboot-required.pkgs
+$ cat /var/run/reboot-required.pkgs 
+linux-image-6.2.0-32-generic
+linux-base
+
 （不要の時はファイルが存在しないようだ）
 ```
