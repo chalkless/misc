@@ -163,6 +163,15 @@ $ sudo apt install openssh-server
 - どちらにしろルーターでポートフォワーディングの設定をしないといけない。２２番ポートをUbuntuマシン用に振り出したIPにフォワードするようにしておく
 - ついでにルーターのDHCP設定で（今回の場合だが）MACアドレスとIPを指定すれば固定IPとして自動で振ってくれるようなので、UbuntuはDHCPで設定取得することとしてルーター側で固定にすることで解決
 
+## Apacheのインストール
+```
+$ sudo apt install apache2
+```
+- これだけでアクセスすると "It works!" ページが出る
+- 実体は `/var/www/html/index.html`
+- 設定ファイルは　`/etc/apache2/apache2.conf`
+- 起動などは `systemctl [start|stop|status] apache2`
+
 ## vi （vim） の再設定
 - インストールしたままのvi　(vim) だと、矢印キーでBとか出たりバックスペースが使えなかったり使いにくい。
 - ので、aptでvimを入れ直すとよい
