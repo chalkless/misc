@@ -63,9 +63,23 @@ list_strain = []
 list_strain.append(strain_id)
 ```
 
+* 引数の処理
+```
+from argparse 
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file', type=str)
+parser.add_argument('-i', '--pmid', type=str)
+args = parser.parse_args()
 
+file_in = args.file
+pmid_in = args.pmid
+```
 
+* オブジェクトの中身の確認
+```
+import pprint
 
-
+pprint.pprint(obj)
+```
 
