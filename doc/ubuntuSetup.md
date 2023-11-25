@@ -122,8 +122,8 @@ $ sudo systemctl emergency
 ```
 
 ## リモートで他端末にログインできるようにするための証明書作成
--　パスワード認証なら設定は不要。単にSSHすればよろし。
--　証明書を作成する（シンプルバージョン。rsa形式）
+- パスワード認証なら設定は不要。単にSSHすればよろし。
+- 証明書を作成する（シンプルバージョン。rsa形式）
 
 ```
 $ ssh-keygen
@@ -133,7 +133,6 @@ $ ssh-keygen
 ```
 
 - id_rsa と id_rsa.pub　ができるので、ログイン先に id_rsa.pub　を設置する（authorized_keysに追記する）
-
 - 証明書を作成する（セキュリティが高いバージョン。ecdsa-sha2-nistp256形式）
 
 ```
@@ -163,6 +162,15 @@ $ sudo apt install openssh-server
 - Ubuntu側の設定としてIPを固定したい。設定のネットワークでIPを固定にしたのだが、ゲートウェイの設定かDNSの設定かインターネットが疎通せず
 - どちらにしろルーターでポートフォワーディングの設定をしないといけない。２２番ポートをUbuntuマシン用に振り出したIPにフォワードするようにしておく
 - ついでにルーターのDHCP設定で（今回の場合だが）MACアドレスとIPを指定すれば固定IPとして自動で振ってくれるようなので、UbuntuはDHCPで設定取得することとしてルーター側で固定にすることで解決
+
+## Apacheのインストール
+```
+$ sudo apt install apache2
+```
+- これだけでアクセスすると "It works!" ページが出る
+- 実体は `/var/www/html/index.html`
+- 設定ファイルは　`/etc/apache2/apache2.conf`
+- 起動などは `systemctl [start|stop|status] apache2`
 
 ## vi （vim） の再設定
 - インストールしたままのvi　(vim) だと、矢印キーでBとか出たりバックスペースが使えなかったり使いにくい。
