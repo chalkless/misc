@@ -41,6 +41,8 @@ with open(file_in, "r") as f:
                     num += 1
 
                     if num == num_max:
+                        
+
                         num_out += 1
                         file_out = file_base + '.' + '{0:03d}'.format(num_out) + '.xml'
                         # print(file_out)
@@ -64,3 +66,18 @@ with open(file_in, "r") as f:
                 tag_str = re.search(r"<[^>\s]+", line)
                 each_footer = re.sub("<", "</", tag_str.group()) + ">"
                 footer.insert(0, each_footer)
+
+    num_out += 1
+    file_out = file_base + '.' + '{0:03d}'.format(num_out) + '.xml'
+    # print(file_out)
+    f_out = open(file_out, 'x')
+
+    str_body = "".join(body)
+    f_out.write(str_header)
+    f_out.write(str_body)
+    f_out.write(str_footer)
+    f_out.close()
+                        
+    body = []
+    num = 0
+    
