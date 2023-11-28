@@ -16,7 +16,9 @@ response = requests.get(url_search_q, params = param)
 ```
 if response.status_code == 200:
     data = response.json()
-    print(data)                                                                
+    print(data)
+elif response.status_code == 404:
+    print("Not found")                                                          
 else:
     print("Error: ", response.status_code)
 ```
