@@ -27,6 +27,11 @@ DNAバーコーディングのデータをとるのに（DNAバーコーディ�
 DarwinCore
 RDFとかオントロジーとか
 
-
+## 略語など
+- BBNJ (marine Biological diversity Beyond areas of National Jurisdiction) 国家管轄権外区域の海洋生物多様性
+  - 「国家管轄権外の海洋生物多様性（BBNJ）の保全及び持続可能な利用」に関する条約（以下、BBNJ協定）
+  - https://cilp.oii.tohoku.ac.jp/bbnj/ （東北大国際法政策センター）
+- OBIS (Ocean Biodiversity Information System) https://obis.org/
+  - J-OBIS https://www.godac.jamstec.go.jp/j-obis/j/
 
 
