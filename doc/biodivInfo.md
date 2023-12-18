@@ -28,6 +28,8 @@ DarwinCore
 RDFとかオントロジーとか
 
 ## 略語など
+- ABS (Access and Benefit-Sharing) 遺伝資源の取得の機会及びその利用から生ずる利益の公正かつ衡平な配分
+  - 環境省のABSのページ：http://abs.env.go.jp/index.html
 - BBNJ (marine Biological diversity Beyond areas of National Jurisdiction) 国家管轄権外区域の海洋生物多様性
   - 「国家管轄権外の海洋生物多様性（BBNJ）の保全及び持続可能な利用」に関する条約（以下、BBNJ協定）
   - https://cilp.oii.tohoku.ac.jp/bbnj/ （東北大国際法政策センター）
