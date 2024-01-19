@@ -85,3 +85,10 @@ import pprint
 pprint.pprint(obj)
 ```
 
+* 例外処理
+```
+try:
+    ...
+except:
+    ...
+```
