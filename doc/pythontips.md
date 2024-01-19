@@ -100,6 +100,6 @@ import re
 medlinedate = "2019 May-Jun,"
 pattern = "\d{4}"
 
-date_matched = re.match(pattern, medlinedate
+date_matched = re.match(pattern, medlinedate)
 year = date_matched.group()
 ```
