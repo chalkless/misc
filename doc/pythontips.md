@@ -103,3 +103,10 @@ pattern = "\d{4}"
 date_matched = re.match(pattern, medlinedate)
 year = date_matched.group()
 ```
+
+* 0埋め
+```
+pmid = "30123456"
+id_pmid = "PMID" + pmid.zfill(13)      # str.zfill(0埋め後の桁数)
+# output: PMID0000030123456
+```
