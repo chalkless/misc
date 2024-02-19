@@ -172,6 +172,44 @@ $ sudo apt install apache2
 - 設定ファイルは　`/etc/apache2/apache2.conf`
 - 起動などは `systemctl [start|stop|status] apache2`
 
+### ApacheをSSL化する
+- https でアクセスできるようにする
+```
+# 準備
+$ sudo apt install certbot
+$ sudo apt install python3-certbot-apache
+```
+```
+#　証明書の作成
+$ sudo certbot --apache -d domainname.jp
+（メールアドレスや配信の要否について訊かれる）
+...
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/chalk-less.org/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/chalk-less.org/privkey.pem
+This certificate expires on 2024-05-19.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+Deploying certificate
+Successfully deployed certificate for chalk-less.org to /etc/apache2/sites-available/000-default-le-ssl.conf
+Congratulations! You have successfully enabled HTTPS on https://chalk-less.org
+...
+（証明書が作成される）
+```
+```
+# SSLモジュールの有効化
+$ sudo a2enmod ssl
+```
+```
+$ cd /etc/apache2/sites-available/
+$ sudo cp 000-default-le-ssl.conf chalk-less.org.conf
+$ sudo vi chalk-less.org.conf
+
+$ sudo a2ensite chalk-less.org
+$ sudo systemctl reload apache2
+```
+
 ## vi （vim） の再設定
 - インストールしたままのvi　(vim) だと、矢印キーでBとか出たりバックスペースが使えなかったり使いにくい。
 - ので、aptでvimを入れ直すとよい
