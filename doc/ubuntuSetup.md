@@ -66,7 +66,7 @@ passwd: password updated successfully
   - マウントポイントを自分の好きなように編集。今回は /data と /share　（２本あるので）
   - ファイルシステムの種類はautoでよい
 - 初期設定だと自分のユーザーの所有権で700のpermissiionでマウントされる
-- いろいろ設定しても変わらないのだが、ふと、マウントするときはもともとあるディレクトリにマウントされると気づき、chownとchmodで好きなように設定すればいいのではと変えたらうまく行った。今回はrootの所有で７７７にしてある（７５５でもいいのかもしれなん。/homeなどはそうなっているし）
+- いろいろ設定しても変わらないのだが、ふと、マウントするときはもともとあるディレクトリにマウントされると気づき、chownとchmodで好きなように設定すればいいのではと変えたらうまく行った。今回はrootの所有で777にしてある（755でもいいのかもしれなん。/homeなどはそうなっているし）
 
 ## 増設HDDに/homeを移動する
 - 現状だと /　の下に /home　があるので（当たり前）、SSDだし、容量も足りなくなるかもなのでHDDに移動させたい
@@ -185,15 +185,15 @@ $ sudo certbot --apache -d domainname.jp
 （メールアドレスや配信の要否について訊かれる）
 ...
 Successfully received certificate.
-Certificate is saved at: /etc/letsencrypt/live/chalk-less.org/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/chalk-less.org/privkey.pem
+Certificate is saved at: /etc/letsencrypt/live/domainname.jp/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/domainname.jp/privkey.pem
 This certificate expires on 2024-05-19.
 These files will be updated when the certificate renews.
 Certbot has set up a scheduled task to automatically renew this certificate in the background.
 
 Deploying certificate
-Successfully deployed certificate for chalk-less.org to /etc/apache2/sites-available/000-default-le-ssl.conf
-Congratulations! You have successfully enabled HTTPS on https://chalk-less.org
+Successfully deployed certificate for domainname.jp to /etc/apache2/sites-available/000-default-le-ssl.conf
+Congratulations! You have successfully enabled HTTPS on https://domainname.jp
 ...
 （証明書が作成される）
 ```
@@ -203,11 +203,39 @@ $ sudo a2enmod ssl
 ```
 ```
 $ cd /etc/apache2/sites-available/
-$ sudo cp 000-default-le-ssl.conf chalk-less.org.conf
-$ sudo vi chalk-less.org.conf
+$ sudo cp 000-default-le-ssl.conf domainname.jp.conf    ... 設定が000-default-le-ssl.confに作られるので自分のドメイン用にコピーして編集（メールアドレスなど）
+$ sudo vi domainname.jp.conf
 
-$ sudo a2ensite chalk-less.org
+$ sudo a2ensite domainname.jp    ... 自分のドメインの設定を有効化
 $ sudo systemctl reload apache2
+```
+### SSL証明書の更新
+- 最近はcronに登録しなくても更新するプログラムがついているのでserviceに登録して定期的にアップデートするようにする
+```
+# 試しに動くかの確認
+$ sudo certbot renew --dry-run
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/domainname.jp.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Account registered.
+Simulating renewal of an existing certificate for domainname.jp
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded: 
+  /etc/letsencrypt/live/domainname.jp/fullchain.pem (success)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# 更新設定を有効化
+$ sudo systemctl status certbot.timer
+● certbot.timer - Run certbot twice daily
+     Loaded: loaded (/lib/systemd/system/certbot.timer; enabled; vendor preset:>
+     Active: active (waiting) since Mon 2024-02-19 23:08:00 JST; 1h 19min ago
+    Trigger: Tue 2024-02-20 11:08:07 JST; 10h left
+   Triggers: ● certbot.service
+
+ 2月 19 23:08:00 blenny systemd[1]: Started Run certbot twice daily.
 ```
 
 ## vi （vim） の再設定
