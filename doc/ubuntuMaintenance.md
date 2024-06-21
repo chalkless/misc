@@ -51,3 +51,28 @@ $ sudo apt update
 $ sudo apt upgrade
 ```
 
+## sshできるポートの指定
+- `/etc/ssh/sshd_config`を編集 (ssh_configもあるので注意)
+```
+(before)
+# Port 22
+```
+
+```
+(after)
+Port 22
+Port 9022
+```
+- 編集後：`$ sudo service ssh restart`
+- 確認
+```
+$ ss -ant4
+State   Recv-Q  Send-Q   Local Address:Port        Peer Address:Port   Process
+LISTEN  0       128            0.0.0.0:22               0.0.0.0:*
+...
+LISTEN  0       128            0.0.0.0：9022             0.0.0.0:*
+...
+```
+
+- 場合によってはファイアーウォールで遮断されているかもしれないので開ける手続きも必要 `ufw allow 9022`
+- 参考：自分の場合、無線LANが調子が悪いときのためにバックアップとして有線もしておいて、ルーターでのポートフォワード設定で通常はwi-fi経由22番へ、バックアップとして有線経由別ポートに行くよう設定した。
