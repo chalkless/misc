@@ -10,6 +10,7 @@ term_search = sys.argv[1]
 url_search_q = url_base + url_search
 param = {'data_group_SP': term_search }
 response = requests.get(url_search_q, params = param)
+data = response.json()        # ここの行はデータ形式によって受け方を変える（json()の部分）
 ```
 
 * if文
@@ -109,4 +110,31 @@ year = date_matched.group()
 pmid = "30123456"
 id_pmid = "PMID" + pmid.zfill(13)      # str.zfill(0埋め後の桁数)
 # output: PMID0000030123456
+```
+
+* 改行の除去
+    * `rstrip`を用いる。文字列の左側も取り除く`strip`もある。
+    * `str.rstrip()`のように用いるが、このとき、`str`は書き換えられず、結果をコピーして用いないといけないことに注意
+ 
+```
+# ダメな例
+with open(file_in) as f:
+    for doi in f.readlines():
+        doi.strip()           # ここの行
+```
+```
+# ダメな例：結果
+10.1002/9781118960608.gbm00513.pub2              # ここに余計な改行が入っている
+	10.1002/9781118960608.gbm00513.pub2
+```
+```
+# よい例
+with open(file_in) as f:
+    for doi in f.readlines():
+        doi_strip = doi.strip()           # ここの行
+```
+```
+# よい例（別バージョン）
+with open(f_in) as f:
+    list = [s.rstrip() for s in f.readlines()]
 ```
