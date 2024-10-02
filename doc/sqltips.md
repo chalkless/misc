@@ -55,11 +55,16 @@ $ psql -p 5432 -U username -d database -c "ここにSQL文"
 PROMPT=> COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter '  '；
 ```
 - たまにユーザーに権限がないと怒られるので次を使う
+```
+PROMPT=> COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter '  '；
+```
+- copyの前に\をつけただけ。
+
 
 ### SQLの外からテーブル内容をファイルに吐く
 ```
 $ psql -p 5432 -U username -d database -c "\COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter '  '；"
 ```
-- copyの前に\がついている点に注意
+- 前項のやりかたをSQLの外から実行しただけ。copyの前に\がついている点に注意
 
 
