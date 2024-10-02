@@ -56,7 +56,7 @@ PROMPT=> COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter ' 
 ```
 - たまにユーザーに権限がないと怒られるので次を使う
 ```
-PROMPT=> COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter '  '；
+PROMPT=> \COPY schema.table TO '/home/user/filename' WITH CSV HEADER delimiter '  '；
 ```
 - copyの前に\をつけただけ。
 
