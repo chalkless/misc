@@ -1,5 +1,18 @@
 # Perlの小技集
 
+- 引数として複数のオプションを指定する方法
+```
+use Getopt::Long;
+
+my ($tree, $name);
+
+GetOptions(
+    "tree=s" => \$file_tree,
+    "name=s" => \$file_name
+    );
+```
+
+
 - 頭に0をつけて数字を13桁にする
 ```
 $article_id = sprintf("%013d", $pmid)
