@@ -1,3 +1,7 @@
+# SQL関連の使い方（ほぼPostgreSQL）
+
+## ログインログオフ関連
+
 ### DBサーバーへのログイン
 ```
 # PostgreSQL
@@ -10,6 +14,8 @@ $ psql -p 5432 -U username -d database
 # PostgreSQL
 prompt=> \q      # 入力するのは \q　だけである
 ```
+
+## データ閲覧関連
 
 ### データを見る
 ```
@@ -30,6 +36,8 @@ PROMPT=> \l
 PROMPT=> \dt SCHEMA.*
 ```
 
+
+## dump
 
 ### テーブルのdump
 ```
@@ -67,4 +75,14 @@ $ psql -p 5432 -U username -d database -c "\COPY schema.table TO '/home/user/fil
 ```
 - 前項のやりかたをSQLの外から実行しただけ。copyの前に\がついている点に注意
 
+
+## データを更新する
+- 安全運転
+
+```
+PROMPT => CREATE TABLE schema.table_new (LIKE schema.table_original including all);      ← テーブル定義をそのままに空のテーブルを作る
+PROMPT => \COPY schema.table_new from '/home/path/table.tab' WITH CSV DELIMITER '  '     ← タブ区切りファイルを取り込む。最後の ' 'の間はタブ。E'\t' と書いてもよい
+PROMPT => ALTER TABLE schema.table_original RENAME TO table_backup;      ← table_original → table_backup。なぜかリネーム先にschemaをつけるとエラーになる
+PROMPT => ALTER TALBE schema.table_new RENAME TO table_original;         ← table_new → table_original
+```
 
