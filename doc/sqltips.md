@@ -81,7 +81,7 @@ $ psql -p 5432 -U username -d database -c "\COPY schema.table TO '/home/user/fil
 
 ```
 PROMPT => CREATE TABLE schema.table_new (LIKE schema.table_original including all);      ← テーブル定義をそのままに空のテーブルを作る
-PROMPT => \COPY schema.table_new from '/home/path/table.tab' WITH CSV DELIMITER '  '     ← タブ区切りファイルを取り込む。最後の ' 'の間はタブ。E'\t' と書いてもよい
+PROMPT => \COPY schema.table_new from '/home/path/table.tab' WITH CSV DELIMITER '  '     ← タブ区切りファイルを取り込む。最後の ' 'の間はタブ。E'\t' と書いてもよい。ヘッダ行がある場合はHEADERも記述する
 PROMPT => ALTER TABLE schema.table_original RENAME TO table_backup;      ← table_original → table_backup。なぜかリネーム先にschemaをつけるとエラーになる
 PROMPT => ALTER TALBE schema.table_new RENAME TO table_original;         ← table_new → table_original
 ```
