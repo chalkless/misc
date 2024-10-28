@@ -36,6 +36,24 @@ PROMPT=> \l
 PROMPT=> \dt SCHEMA.*
 ```
 
+## データの設計確認
+### データの型確認
+```
+PROMPT => \d SCHEMA.TABLE
+                       テーブル"SCHEMA.TABLE"
+             列             |        タイプ         | 照合順序 | Null 値を許容 | デフォルト
+----------------------------+-----------------------+----------+---------------+------------
+ id                         | character varying(30) |          | not null      |
+ scientific_name            | text                  |          | not null      |
+ strain_no                  | text                  |          | not null      |
+ taxonomy_id                | integer               |          | not null      |
+ gtdb_id                    | text                  |          |               |
+ history                    | text                  |          |               |
+ country_CODE               | character varying(2)  |          | not null      |
+ is_type_strain             | boolean               |          | not null      |
+インデックス:
+    "table_pkc" PRIMARY KEY, btree (id)
+```
 
 ## dump
 
