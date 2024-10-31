@@ -36,6 +36,15 @@ PROMPT=> \l
 PROMPT=> \dt SCHEMA.*
 ```
 
+## データ操作
+### データ追加
+
+### データ削除
+```
+PROMPT=> DELETE FROM schema.table
+```
+
+
 ## データの設計確認
 ### データの型確認
 ```
