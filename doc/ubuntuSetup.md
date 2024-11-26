@@ -163,6 +163,15 @@ $ sudo apt install openssh-server
 - どちらにしろルーターでポートフォワーディングの設定をしないといけない。２２番ポートをUbuntuマシン用に振り出したIPにフォワードするようにしておく
 - ついでにルーターのDHCP設定で（今回の場合だが）MACアドレスとIPを指定すれば固定IPとして自動で振ってくれるようなので、UbuntuはDHCPで設定取得することとしてルーター側で固定にすることで解決
 
+## ディレクトリ名を英語にする
+- 何もしないと、ホームディレクトリ内に「ダウンロード」「デスクトップ」などと日本語でディレクトリが作られる。これを Download、Desktop などと英語にする
+```
+$ LC_ALL=C xdg-user-dirs-update --force  #CUI環境の場合
+$ LANG=C xdg-user-dirs-update --force  #GUI環境の場合
+```
+- 戻すときは「LANG=C」or 「LC_ALL=C」を削って実行
+- ディレクトリの中に何かあると日本語ディレクトリが消されずに英日共存するので中身を移すなどして消してよい
+
 ## Apacheのインストール
 ```
 $ sudo apt install apache2
