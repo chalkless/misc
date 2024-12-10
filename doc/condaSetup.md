@@ -96,3 +96,30 @@ $ mamba remove -n envname
 $ mamba activate envname
 $ mamba deactivate envname
 ```
+
+### troubleshooting
+- 自分の場合は以下のように怒られたのだが
+```
+warning  libmamba You have not set the root prefix environment variable.
+    To permanently modify the root prefix location, either:
+      - set the 'MAMBA_ROOT_PREFIX' environment variable
+      - use the '-r,--root-prefix' CLI option
+      - use 'mamba shell init ...' to initialize your shell
+        (then restart or source the contents of the shell init script)
+    Continuing with default value: "/home/tkr_nak/miniconda3"
+```
+- `mamba shell init`すると以下が`.bashrc`に書き込まれたので、再読み込みすれば怒られないようになる
+```
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE='/home/tkr_nak/miniconda3/bin/mamba';
+export MAMBA_ROOT_PREFIX='/home/tkr_nak/miniconda3';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+```
