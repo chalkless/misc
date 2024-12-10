@@ -4,14 +4,14 @@
 
 ## apt/yum/brewとconda
 - システム全体はapt（Ubuntuの場合）、yum（RedHat系の場合。CentOSも含む）、brew（Macの場合）でパッケージを管理します。
-- 一方でcondaはその場その場で仮想環境（channel）を作ってその環境で作業をするイメージです。
+- 一方でcondaはその場その場で仮想環境を作ってその環境で作業をするイメージです。
 - なので、システム全体とconda環境を混在させる（特に同じ場所にインストールする）といずれ環境を破壊するので絶対にやめるべきです
 - 理想は自分のホームディレクトリの下にインストールすることでしょう。逆に共用マシンで共通部分を触る権限がないときはcondaで自身の環境を作ることができます。
 - どうしても共用の場所にインストールしたいならばシステム全体が触らない場所にインストールします。
 - たとえば、Macの場合、Homebrewは/opt/brew/以下にパッケージをインストールしますが、同様に/opt/miniconda/以下にインストールすると管理的にもきれいに見えるかと思います。
 - 一つの例として、aptで入るものはなるべくaptで入れる、あるいは一連の解析（たとえばNGS解析）はcondaの1つの環境で実現できるようにその環境でインストールする、などという使い方もあるかと思います
 
-# Minicondaのインストール
+## Minicondaのインストール
 - ここに書いてもいずれは変わるかもしれないから、一次情報である公式サイトで確認すること！
 - Minicondaでググると公式ページが出てきた → Minicondaのページ：https://docs.anaconda.com/miniconda/
 - 読む →　Anacondaと同じダウロードページらしい。行くと登録しろとでかでかと書いてあるが、そこに小さくskipと書いてある。リンク先で自分のプラットフォームのファイルをダウンロードしてくる。
@@ -60,25 +60,39 @@ source ~/miniconda3/etc/profile.d/conda.sh
 
 - `source .bashrc`するか、ログインし直すかするとcondaの設定が効く。
 
+## mambaのインストール
+- mambaはconda用のパッケージマネージャー
+- https://mamba.readthedocs.io/en/latest/
+- https://github.com/mamba-org/mamba
 
-- 以下、編集途中の残骸
-
-
-- biocondaのパッケージが使えるようにchannelsに登録する
+- 上を見るとこう書いてあるんだけどね：We recommend that you start with the Miniforge distribution >= Miniforge3-23.3.1-0. 
 ```
-$ conda config --add channels defaults   ← 多分、すでに入っていると怒られる
-$ conda config --add channels conda-forge
-$ conda config --add channels bioconda
+$ conda install -c conda-forge mamba
+# 別のやり方
+$ conda install conda-forge::mamba
 ```
+- とりあえず、conda-forge channelから持ってこい、と指定している。
 
-- インストールなど
-    - `-c`はチャンネル指定なのでなくても動くかとは思う 
+## 仮想環境の作成
 ```
-$ conda install -c bioconda fastqc
-$ conda install -c biocond trim_galore
+$ mamba create -n envname
 ```
 
-- trinityはそのままだと古いバージョンが入ってしまうのでバージョンも指定
+- 設定した仮想環境は以下で確認できる
 ```
-$ conda install trinity=2.13.2
+$ mamba env list
+  Name  Active  Path                    
+──────────────────────────────────────────
+  base  *       /home/chalkless/miniconda3
+```
+
+- 仮想環境の削除
+```
+$ mamba remove -n envname
+```
+
+- 仮想環境に入る/仮想環境から出る
+```
+$ mamba activate envname
+$ mamba deactivate envname
 ```
