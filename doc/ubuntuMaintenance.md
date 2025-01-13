@@ -23,7 +23,7 @@ UBUNTU_CODENAME=jammy
 *** System restart required ***
 ```
 
--　ログイン状態時でのrebootの要不要確認
+- ログイン状態時でのrebootの要不要確認
 ```
 $ cat /var/run/reboot-required
 *** System restart required ***
@@ -49,6 +49,7 @@ linux-base
 ```
 $ sudo apt update
 $ sudo apt upgrade
+$ sudo apt autoremove      ← 使われていないパッケージの削除(optional)
 ```
 
 ## sshできるポートの指定
@@ -76,3 +77,71 @@ LISTEN  0       128            0.0.0.0：9022             0.0.0.0:*
 
 - 場合によってはファイアーウォールで遮断されているかもしれないので開ける手続きも必要 `ufw allow 9022`
 - 参考：自分の場合、無線LANが調子が悪いときのためにバックアップとして有線もしておいて、ルーターでのポートフォワード設定で通常はwi-fi経由22番へ、バックアップとして有線経由別ポートに行くよう設定した。
+
+
+## Sambaによるファイルサーバー
+- Sambaをたてておくとファイルサーバーとしてネットワーク内のサーバーからファイルを閲覧、保管することができる
+
+### Sambaのインストール
+```
+$ sudo apt install samba
+```
+
+### 共有先の作成
+```
+$ mkdir /shared/all
+$ chmod o+rwx /shared/all    ← 全員に共有するディレクトリはpermissionを777にする。（Other userにrwxの権限を付与、の意味）
+```
+- 特定ユーザーだけがアクセスするようにする場合は、そのユーザーでユーザー名とグループ名を設定する
+
+### Sambaの設定
+- 設定ファイルは`/etc/samba/smb.conf`。バックアップをとっておくこと
+
+```
+[global]
+...
+   workgroup = (自分のワークグループに設定。特にWindowsのとき)
+...
+   interfaces = 127.0.0.0/8 eth0 192.168.0.0/24    ← ローカルネットワークからのみの際は192.168.0.0/24（か自分のネットワークの設定）を追加する
+```
+
+#### ゲストユーザーでも読み書きできるようにする設定
+```
+[shared]
+   path = /shared/all
+   browsable = yes
+   writable  = yes
+   guest ok  = yes
+   read only = no
+```
+
+#### 特定ユーザーのみが読み書きできるようにする設定
+```
+[specific]
+   path = /shared/user_a
+   browsable = yes
+   writable  = yes
+   guest ok  = no
+   valid users = user_a
+```
+```
+# アクセスできるユーザーがLinuxシステム上に存在しない場合は新たに作成
+$ sudo pdbedit -a user_a
+# 特定ユーザーのみがアクセスできるときは、アクセスする際のパスワードも設定
+$ sudo smbpasswd -a user_a
+（パスワードを入れる）
+$ sudo pdbedit -l   ← 確認
+```
+
+### Sambaのリスタート
+```
+$ sudo systemctl restart smbd
+```
+
+###  動作確認など
+- Macからの場合：Ubuntuでavahiが動いているので、ネットワークの下にサーバー名が出ているはず。そこからアクセスする
+- Macからの場合：もしくは、Finderで移動 → サーバーに接続 で smb://（IPアドレス）でアクセスできる
+- 見えない場合、UbuntuのファイアーウォールでSambaの使う先のポートをブロックしている可能性もある。以下で許可する
+```
+$ sudo ufw allow 'Samba'
+```
