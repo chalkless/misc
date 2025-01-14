@@ -52,6 +52,39 @@ $ sudo apt upgrade
 $ sudo apt autoremove      ← 使われていないパッケージの削除(optional)
 ```
 
+## 外付けHDDをつなげる
+- （初回のみ）マウントポイント（マウントした（=つなげた）後のアクセス先）の設定
+   - 通常は/mntの下に作ると思う
+   - 作る名前は自分の好きなように
+```
+$ sudo mkdir /mnt/exthdd
+```
+- つなぐ
+- デバイスとしてどう認識されたかの確認
+   - HDDなら`/dev/sdb`とか`/dev/sdc`になっているかと思う
+```
+$ sudo fdisk -l
+...
+```
+- マウントする
+```
+$ mount /dev/sdc /mnt/exthdd
+```
+   - HDDのパーティションが分かれている場合など、パーティションの番号まで必要になる場合もある
+```
+$ mount /dev/sdc1 /mnt/exthdd
+```
+   - ディクスタイプを明示的に指定してマウントすることもできる：ext3、ntfs、fatなど
+```
+$ mount -t ext3 /dev/sdc1 /mnt/exthdd
+```
+- 外すとき（アンマウント）
+```
+# どちらかをやればいい
+$ sudo umount /dev/sdc1
+$ sudo umount /mnt/exthdd
+```
+
 ## sshできるポートの指定
 - `/etc/ssh/sshd_config`を編集 (ssh_configもあるので注意)
 ```
