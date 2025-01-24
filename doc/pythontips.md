@@ -138,3 +138,7 @@ with open(file_in) as f:
 with open(f_in) as f:
     list = [s.rstrip() for s in f.readlines()]
 ```
+
+* 「‘str’ object is not callable」エラー
+ * strは予約語だが、（えてしてstringの略としての）変数として何かを代入してしまったために起きるエラー。`del str`する。
+ * 特にGoogle Colab内だと1回どこかで変数を消去しないとプログラムを書き換えても変数内に値が残っているので注意
