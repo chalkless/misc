@@ -142,3 +142,13 @@ with open(f_in) as f:
 ## 「‘str’ object is not callable」エラー
 - strは予約語だが、（えてしてstringの略としての）変数として何かを代入してしまったために起きるエラー。`del str`する。
 - 特にGoogle Colab内だと1回どこかで変数を消去しないとプログラムを書き換えても変数内に値が残っているので注意
+
+## ファイル名を取得して書き込み用ファイル名を作成
+```
+file_in = args.file
+
+file_base = os.path.splitext(os.path.basename(file_in))[0]
+file_ext = os.path.splitext(file_in)
+
+file_out = str(file_base)+".out"+str(file_ext[1])     ← file_baseの部分がファイル名の拡張子を除いた部分。`file_ext[1]`が拡張子の部分
+```
