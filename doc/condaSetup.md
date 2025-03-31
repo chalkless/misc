@@ -51,7 +51,7 @@ conda init
 Thank you for installing Miniconda3!
 ```
 
-- `conda init`をnoにしたので、自分で.bashrcの末尾に書き込む
+- `conda init`をnoにしたので、自分で.bashrcの末尾に書き込むと書かれているものがある
 ```
 (.bashrc)
 export PATH=~/miniconda3/bin:$PATH
@@ -60,7 +60,44 @@ source ~/miniconda3/etc/profile.d/conda.sh
 
 - `source .bashrc`するか、ログインし直すかするとcondaの設定が効く。
 
+- インストール時の指示に従えば以下のコマンドを打つことになるんだろうか
+```
+$ eval "$(/home/tkr_nak/miniconda3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+(YOUR_SHELL_NAMEは自分のシェルの名前に書き換える。bashなど)
+$ conda init
+```
+- するとcondaのbase環境に入ったモードになる（プロンプトの最初に(base)が付く）
+- 以下のようにすると元のモードに戻れる
+```
+$ conda deactivate
+```
+- .bashrcに以下が書き込まれている
+```
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/tknakazato/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/tknakazato/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tknakazato/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/tknakazato/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+- 自動でconda環境にならないようには以下のように設定しておく
+```
+$ conda config --set auto_activate_base false
+```
+
+
+
+
 ## mambaのインストール
+- 結局これを使うべきなのか、今後 オワコンなのかがわからない
 - mambaはconda用のパッケージマネージャー
 - https://mamba.readthedocs.io/en/latest/
 - https://github.com/mamba-org/mamba
