@@ -52,3 +52,6 @@ $ for nm in `ls | grep NBRC`;
     do ... ;
   done
 ```
+
+### ファイルの文字コード変換
+- 今風はnkfでなくてiconv
