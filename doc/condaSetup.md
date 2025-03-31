@@ -93,7 +93,29 @@ unset __conda_setup
 $ conda config --set auto_activate_base false
 ```
 
-
+## レポジトリの設定
+- 今のレポジトリは以下で確認できる
+```
+$ conda config --get channels
+--add channels 'https://repo.anaconda.com/pkgs/r'
+--add channels 'https://repo.anaconda.com/pkgs/main'
+```
+- 追加するとき
+```
+$ conda config --add channels bioconda
+$ conda config --get channels
+--add channels 'https://repo.anaconda.com/pkgs/r'
+--add channels 'https://repo.anaconda.com/pkgs/main'
+--add channels 'bioconda'   # highest priority
+```
+- 削除するとき
+```
+$ conda config --remove channels defaults
+```
+- レポジトリを指定してのインストール
+```
+$ conda install bioconda::biopython
+```
 
 
 ## mambaのインストール
