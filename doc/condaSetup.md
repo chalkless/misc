@@ -129,7 +129,7 @@ $ conda env list
 base                   /home/chalkless/miniconda3
 blast                * /home/chalkless/miniconda3/envs/blast
 ```
-- * がついているのは、今そこに入っています、ということ
+- `*` がついているのは、今そこに入っています、ということ
 
 ### 仮想環境に入る/出る
 ```
