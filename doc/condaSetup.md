@@ -112,11 +112,46 @@ $ conda config --get channels
 ```
 $ conda config --remove channels defaults
 ```
-- レポジトリを指定してのインストール
+
+## 仮想環境の設定
+### 仮想環境の作成
 ```
-$ conda install bioconda::biopython
+$ conda create -n blast
+```
+- 名前を指定するか、ファイルを指定するかで作成するので、名前を指定するときは -n をつける
+
+### 仮想環境に入る/出る
+```
+# 入る
+$ conda activate blast
+
+# 出る
+$ conda deactivate
 ```
 
+## パッケージ関係
+### パッケージを探す
+```
+$ conda search blast
+...（最初 うねうね動いてからリストが表示される）
+blast                         2.14.1 pl5321h6f7f691_0  bioconda
+blast                         2.15.0 pl5321h6f7f691_0  bioconda
+blast                         2.15.0 pl5321h6f7f691_1  bioconda
+blast                         2.16.0      h66d330f_4  bioconda
+blast                         2.16.0      h66d330f_5  bioconda
+blast                         2.16.0      h6f7f691_0  bioconda
+blast                         2.16.0      hc155240_2  bioconda
+blast                         2.16.0      hc155240_3  bioconda
+```
+### パッケージをインストールする
+```
+# レポジトリを指定してのインストール
+$ conda install bioconda::blast
+```
+
+
+
+# 以下は見なくていいと思う
 
 ## mambaのインストール
 - 結局これを使うべきなのか、今後 オワコンなのかがわからない
