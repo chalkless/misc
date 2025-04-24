@@ -120,6 +120,17 @@ $ conda create -n blast
 ```
 - 名前を指定するか、ファイルを指定するかで作成するので、名前を指定するときは -n をつける
 
+### 仮想環境のリストを表示
+```
+$ conda env list
+
+# conda environments:
+#
+base                   /home/chalkless/miniconda3
+blast                * /home/chalkless/miniconda3/envs/blast
+```
+- * がついているのは、今そこに入っています、ということ
+
 ### 仮想環境に入る/出る
 ```
 # 入る
