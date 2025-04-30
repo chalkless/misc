@@ -160,7 +160,13 @@ blast                         2.16.0      hc155240_3  bioconda
 $ conda install bioconda::blast
 ```
 
-
+## トラブル対応
+### CondaValueError: You have chosen a non-default solver backend (libmamba) but it was not recognized. Choose one of: classic
+- 自分の場合は、emacsを入れるとこうなった。pythonを破壊的に上書きしたりするかららしい
+```
+$ conda config --set solver classic
+$ conda update conda
+```
 
 # 以下は見なくていいと思う
 
