@@ -22,7 +22,20 @@ prompt=> \q      # 入力するのは \q　だけである
 PROMPT=> select * from SCHEMA.TABLE;
 ```
 - PostgreSQLはスキーマ名を入れないと得てして動かない。
+
+
 - 先頭10件だけなどはlimit 10をつける
+
+- 抽出条件
+```
+PROMPT=> select * from test.strains where id='ST_0000002209_002';
+```
+
+```
+PROMPT=> select * from test.strains where id like 'ST_0000002209_002';
+```
+
+- シングルクォーテーションにしないと動かない
 
 ### データベースのリストを取得
 ```
