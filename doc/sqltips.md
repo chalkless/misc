@@ -108,7 +108,6 @@ alter table table_name alter column_name set default nextval('sequence_name');
 ```
 - すでに別のシーケンスが対応づいていても変更可能
 
-
 ### NOT NULL制約の変更
 ```
 # 制約追加するとき
@@ -117,7 +116,14 @@ PROMPT=> ALTER TABLE schema.table ALTER COLUMN column SET NOT NULL;
 PROMPT=> ALTER TABLE schema.table ALTER COLUMN column DROP NOT NULL;
 ```
 
-### データの投入
+### primary keyの変更
+```
+# 削除する時
+alter table table_name drop constraint table_name_pkey;
+## unique 属性もついているので以下も（\d tablename したときに一番下に制約が出てくるのでそれを削除する）
+alter table table_name drop constraint table_name_id_key;
+```
+
 
 
 
