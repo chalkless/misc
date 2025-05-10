@@ -51,6 +51,14 @@ PROMPT=> \dt SCHEMA.*
 
 ## データ操作
 ### データ追加
+- insert文
+- copy文 or \copy文
+
+### シーケンスが対応づいた以外のところにcopyでデータ投入
+```
+\copy table_name(col2, col3, ...) from '/path/file' with csv delimiter '  ' header
+```
+
 
 ### データ削除
 ```
@@ -77,11 +85,29 @@ PROMPT => \d SCHEMA.TABLE
     "table_pkc" PRIMARY KEY, btree (id)
 ```
 
+### テーブルを作る
+```
+create table schema.table;
+```
+
+### シーケンスを作成する
+- テーブル中で、行に採番することができて、その番号をシーケンスとして管理する
+```
+create sequence sequence_name;
+```
+
 ### データ型の変更
 ```
 PROMPT=> ALTER TABLE schema.table ALTER COLUMN column TYPE type;
 （例）alter table schema.genome_info alter column genome_info_id type varchar(30);
 ```
+
+### ある列にシーケンスを適用
+```
+alter table table_name alter column_name set default nextval('sequence_name');
+```
+- すでに別のシーケンスが対応づいていても変更可能
+
 
 ### NOT NULL制約の変更
 ```
@@ -90,6 +116,10 @@ PROMPT=> ALTER TABLE schema.table ALTER COLUMN column SET NOT NULL;
 # 制約削除するとき
 PROMPT=> ALTER TABLE schema.table ALTER COLUMN column DROP NOT NULL;
 ```
+
+### データの投入
+
+
 
 ## dump
 
