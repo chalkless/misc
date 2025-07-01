@@ -52,6 +52,19 @@ $ sudo apt upgrade
 $ sudo apt autoremove      ← 使われていないパッケージの削除(optional)
 ```
 
+## ファームウェアのアップデート
+- 頻度はごく稀だと思うが、SSHログインするとファームウェアのアップデートの情報が出たりする
+```
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+```
+- 素直にこのコマンドをたたくとより詳しい情報が出る
+- 実際に適用するのは以下
+```
+sudo fwupdmgr update
+```
+- えてしてこの後にリブートを促される（選択はできるのでリブートをしなくてもいい）
+
 ## 外付けHDDをつなげる
 - （初回のみ）マウントポイント（マウントした（=つなげた）後のアクセス先）の設定
    - 通常は/mntの下に作ると思う
