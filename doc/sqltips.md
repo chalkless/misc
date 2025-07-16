@@ -167,6 +167,12 @@ $ psql -p 5432 -U username -d database -c "\COPY schema.table TO '/home/user/fil
 
 
 ## データを更新する
+### テーブル名を変える
+```
+ALTER TABLE schema.table_present RENAME TO table_new;
+```
+
+### 前のものをバックアップして新しいデータのテーブルに置き換える例
 - 安全運転
 
 ```
