@@ -39,9 +39,25 @@ DNAバーコーディングのデータをとるのに（DNAバーコーディ�
 
 
 ## 機関ID
-
-
-
+- GRSciColl：https://scientific-collections.gbif.org/
+  - GBIFなどで使われている機関・コレクションのID
+  - じーあーるさいこる
+  - もともとはSciCollがあった：https://scicoll.org/
+  - どうやって作られているかはこのあたりが役に立つかもしれない：https://biss.pensoft.net/browse_user_collection_documents?collection_id=459
+- BioCollections：https://www.ncbi.nlm.nih.gov/biocollections/
+  - NCBIがやっている機関・コレクションのID
+  - GRSciCollと当初は一緒にやっていたところがあるが、その後は独自にデータ追加がされたりして連携をしているわけではない
+- Latimer Core：https://ltc.tdwg.org/
+  - 略称：LtC
+  - コレクション情報を記述するための標準化規格
+- ISIL：https://www.ndl.go.jp/jp/library/isil/
+  - 図書館及び関連組織のための国際標準識別子(International standard identifier for libraries and related organizations：ISIL)
+  - 図書館をはじめ博物館、文書館などの類縁機関に付与される国際的なIDです。
+  - なので、大学の図書館や博物館は入るが、大学そのものや研究室単位ではIDは振られない
+- ROR：https://ror.org/
+  - The Research Organization Registry
+  - あーるおーあーる
+  - けっこうスカスカで使えるのかどうか?
 
 
 ## 種とは?　株とは?
