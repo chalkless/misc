@@ -156,8 +156,15 @@ blast                         2.16.0      hc155240_3  bioconda
 ```
 ### パッケージをインストールする
 ```
+conda install blast
+```
+```
 # レポジトリを指定してのインストール
-$ conda install bioconda::blast
+conda install bioconda::blast
+```
+```
+# レポジトリを指定してのインストール・別の書き方
+conda install -c bioconda blast
 ```
 
 ### インストールされているパッケージのリストを表示する
