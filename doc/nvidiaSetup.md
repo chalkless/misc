@@ -82,6 +82,32 @@ sudo apt install nvidia-driver-580
 - SSHで外からログインできればいいんだけどさ
 - グラボを挿したらマザボのグラフィック出力（HDMI）が使えなくなってグラボの方の口に挿さないと画面が出なかったので意外と盲点
 
+## Cudaのインストール
+- https://developer.nvidia.com/cuda-downloads で環境（OSなど）を選ぶとコマンドが出てくる。
+```
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt update
+sudo apt install cuda-toolkit-13-0
+```
+- .bashrcに追加
+```
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+```
+- 再起動する
+- `nvidia-smi`できちんと出るか確認
+- nvccでの確認
+```
+$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Aug_20_01:58:59_PM_PDT_2025
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+```
+
+
 ## 関連するドライバなどのアンインストール
 ```
 sudo apt --purge remove "nvidia-*"
@@ -96,3 +122,11 @@ sudo apt --purge remove "cuda-*"
 $ nvidia-smi 
 NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.
 ```
+→ ドライバの再インストール
+- その2
+```
+$ nvidia-smi
+Failed to initialize NVML: Driver/library version mismatch
+NVML library version: 580.95
+```
+→ 再起動してみる
