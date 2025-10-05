@@ -120,6 +120,10 @@ $ conda create -n blast
 ```
 - 名前を指定するか、ファイルを指定するかで作成するので、名前を指定するときは -n をつける
 
+```
+$ conda create -n [name] python=3.11    # pythonのバージョンを指定して仮想環境を作る場合。特に指定しないとpythonの2系が入ることがある
+```
+
 ### 仮想環境のリストを表示
 ```
 $ conda env list
@@ -138,6 +142,16 @@ $ conda activate blast
 
 # 出る
 $ conda deactivate
+```
+
+### 仮想環境の削除
+- その1：仮想環境のパッケージを全部消す。結果的に空になるので仮想環境ごと消していいか聞かれる
+```
+$ conda env -n blast --all   # blastを消す例
+```
+- その2：仮想環境をまるごと消す
+```
+$ conda env remove blast
 ```
 
 ## パッケージ関係
