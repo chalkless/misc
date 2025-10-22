@@ -90,6 +90,11 @@ PROMPT => \d SCHEMA.TABLE
 create table schema.table;
 ```
 
+#### すでにあるテーブルと同じスキーマでテーブルを作る
+```
+create table t_16s_similarities_251022 (like t_16s_similarities including all);
+```
+
 ### シーケンスを作成する
 - テーブル中で、行に採番することができて、その番号をシーケンスとして管理する
 ```
