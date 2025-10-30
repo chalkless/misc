@@ -129,8 +129,10 @@ alter table table_name drop constraint table_name_pkey;
 alter table table_name drop constraint table_name_id_key;
 ```
 
-
-
+### テーブル削除
+```
+drop table table_name;
+```
 
 ## dump
 
