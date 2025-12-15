@@ -8,8 +8,9 @@
 - なので、システム全体とconda環境を混在させる（特に同じ場所にインストールする）といずれ環境を破壊するので絶対にやめるべきです
 - 理想は自分のホームディレクトリの下にインストールすることでしょう。逆に共用マシンで共通部分を触る権限がないときはcondaで自身の環境を作ることができます。
 - どうしても共用の場所にインストールしたいならばシステム全体が触らない場所にインストールします。
-- たとえば、Macの場合、Homebrewは/opt/brew/以下にパッケージをインストールしますが、同様に/opt/miniconda/以下にインストールすると管理的にもきれいに見えるかと思います。
+    - たとえば、Macの場合、Homebrewは/opt/brew/以下にパッケージをインストールしますが、同様に/opt/miniconda/以下にインストールすると管理的にもきれいに見えるかと思います。
 - 一つの例として、aptで入るものはなるべくaptで入れる、あるいは一連の解析（たとえばNGS解析）はcondaの1つの環境で実現できるようにその環境でインストールする、などという使い方もあるかと思います
+- condaと同じようなものにpipがある（python3の場合、pip3のコマンドの場合もある）。aptなどで入れるようなLinux一般（あるいは科学計算）はconda、Pythonだけで閉じているもの（Pythonのライブラリ中心）はpipという棲み分けっぽい。とりあえず、condaでインストールしたりpipでインストールしたりと混ぜると環境が壊れる、という記事が特にたくさん出ているので注意する。
 
 ## Minicondaのインストール
 - ここに書いてもいずれは変わるかもしれないから、一次情報である公式サイトで確認すること！
@@ -94,6 +95,7 @@ $ conda config --set auto_activate_base false
 ```
 
 ## レポジトリの設定
+- いろいろなパッケージの配布元をレポジトリという
 - 今のレポジトリは以下で確認できる
 ```
 $ conda config --get channels
@@ -169,6 +171,7 @@ blast                         2.16.0      hc155240_2  bioconda
 blast                         2.16.0      hc155240_3  bioconda
 ```
 ### パッケージをインストールする
+- 仮想環境に入っていないときにインストールをかけると、すべての仮想環境でそのパッケージが使える。仮想環境に入ってインストールすると、その仮想環境内だけで使えるようにインストールされる
 ```
 conda install blast
 ```
@@ -202,71 +205,4 @@ $ conda install pandas --force-reinstall
 ```
 $ conda config --set solver classic
 $ conda update conda
-```
-
-# 以下は見なくていいと思う
-
-## mambaのインストール
-- 結局これを使うべきなのか、今後 オワコンなのかがわからない
-- mambaはconda用のパッケージマネージャー
-- https://mamba.readthedocs.io/en/latest/
-- https://github.com/mamba-org/mamba
-
-- 上を見るとこう書いてあるんだけどね：We recommend that you start with the Miniforge distribution >= Miniforge3-23.3.1-0. 
-```
-$ conda install -c conda-forge mamba
-# 別のやり方
-$ conda install conda-forge::mamba
-```
-- とりあえず、conda-forge channelから持ってこい、と指定している。
-
-## 仮想環境の作成
-```
-$ mamba create -n envname
-```
-
-- 設定した仮想環境は以下で確認できる
-```
-$ mamba env list
-  Name  Active  Path                    
-──────────────────────────────────────────
-  base  *       /home/chalkless/miniconda3
-```
-
-- 仮想環境の削除
-```
-$ mamba remove -n envname
-```
-
-- 仮想環境に入る/仮想環境から出る
-```
-$ mamba activate envname
-$ mamba deactivate envname
-```
-
-### troubleshooting
-- 自分の場合は以下のように怒られたのだが
-```
-warning  libmamba You have not set the root prefix environment variable.
-    To permanently modify the root prefix location, either:
-      - set the 'MAMBA_ROOT_PREFIX' environment variable
-      - use the '-r,--root-prefix' CLI option
-      - use 'mamba shell init ...' to initialize your shell
-        (then restart or source the contents of the shell init script)
-    Continuing with default value: "/home/tkr_nak/miniconda3"
-```
-- `mamba shell init`すると以下が`.bashrc`に書き込まれたので、再読み込みすれば怒られないようになる
-```
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE='/home/tkr_nak/miniconda3/bin/mamba';
-export MAMBA_ROOT_PREFIX='/home/tkr_nak/miniconda3';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
 ```
