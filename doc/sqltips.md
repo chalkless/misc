@@ -37,6 +37,11 @@ PROMPT=> select * from test.strains where id like 'ST_0000002209_002';
 
 - シングルクォーテーションにしないと動かない
 
+### データの件数
+```
+SELECT COUNT(*) FROM table_name;
+```
+
 ### データベースのリストを取得
 ```
 # PostgreSQL
