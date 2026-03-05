@@ -145,8 +145,19 @@ drop table table_name;
 ```
 $ pg_dump -p 5432 -U sqluser -E UTF8 --file=/home/user/backup/backup_`date "+%Y_%m_%d_%H_%M_%S"`.dump -Fp dbname
 ```
+- 念のため：PostgreSQLの中でなくて、シェルから実行する
+- 実行するとパスワードを聞かれる
 - この場合、backupフォルダがないと怒られる
 - できるファイルの中身はデータとSQL文と思えば良い
+- 補足：-Fp：Formatはplain text。つけなくてもよい
+
+```
+# 応用編
+$ pg_dump -U sqluser -E UTF8 --file=/home/sql_dump_260305.dump -T ms_user -N 2024 dbname
+```
+- このテーブルは除外：-T テーブル名
+- このパターンのテーブルは除外：-N パターン
+- 逆にこれのみ、このパターンのみの場合は -t と -n
 
 ```
 # restoreするとき
