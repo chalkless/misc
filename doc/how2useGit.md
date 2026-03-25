@@ -77,7 +77,7 @@ $ git init
 
 
 ## 実際の利用編
-- ローカルレポジトリにダウンロードしてくる
+### ローカルレポジトリにダウンロードしてくる
   - レポジトリのページに行って、メイン部分右上の（緑色の）Codeボタンをクリック
   - CloneでSSHを選んでURLをコピー
 ```
@@ -92,7 +92,7 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
   - SSH公開鍵の設定を見直すこと
-- リモートレポジトリに反映
+### リモートレポジトリに反映
   - ステージング（リモートに反映させるファイル・ディレクトリを指定）
   ```
   $ git add （反映させたいファイル・ディレクトリ）
@@ -105,3 +105,16 @@ and the repository exists.
   ```
   $ git push
   ```
+### branch関係
+- 今のbranchを確認する
+```
+git branch
+```
+- branchを切り替える
+```
+git switch branchname
+```
+- branchを作成してそれに切り替える
+```
+git switch -c branchname
+```
