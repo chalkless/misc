@@ -7,6 +7,8 @@ import pandas as pd
 def excel2tsv(file_excel, file_tsv):
     try:
         df = pd.read_excel(file_excel)
+        # 文字列として読み込むには： dtype=str つける
+        # 複数シートある時にシート名やシート番号を指定する：sheet_name=1 （0スタート）
         df.to_csv(file_tsv, sep='\t', index=False)
         print(f"Successfully converted '{file_excel}' to '{file_tsv}'")
     except FileNotFoundError:
