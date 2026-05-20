@@ -205,3 +205,8 @@ PROMPT => ALTER TABLE schema.table_original RENAME TO table_backup;      ← tab
 PROMPT => ALTER TABLE schema.table_new RENAME TO table_original;         ← table_new → table_original
 ```
 
+## Tips
+- テーブル名は原則としてアルファベットか_から始める。数字から始めたりはできないことはないが、オートコンプリートがそのままでは効かないことからもわかるようにそのままでは動かない。そのため ” ” で囲う。囲うとオートコンプリートも効く
+```
+select * from "2026_table";
+```
