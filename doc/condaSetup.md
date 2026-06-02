@@ -181,14 +181,18 @@ blast                         2.16.0      hc155240_3  bioconda
 ```
 conda install blast
 ```
+- レポジトリを指定してのインストール
 ```
-# レポジトリを指定してのインストール
 conda install bioconda::blast
 ```
 ```
-# レポジトリを指定してのインストール・別の書き方
 conda install -c bioconda blast
 ```
+- バージョンを指定してのインストール
+```
+conda install pyqt==5.15.11
+```
+
 
 ### インストールされているパッケージのリストを表示する
 ```
