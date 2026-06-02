@@ -95,6 +95,11 @@ unset __conda_setup
 $ conda config --set auto_activate_base false
 ```
 
+## condaのアップデート
+```
+$ conda update -n base -c defaults conda
+```
+
 ## レポジトリの設定
 - いろいろなパッケージの配布元をレポジトリという
 - 今のレポジトリは以下で確認できる
