@@ -197,8 +197,12 @@ $ conda list
 
 ### インストールされているパッケージすべてをアップデートする
 ```
-$ conda update --all
+$ conda update -n base --all
 ```
+```
+(blast)$ conda update --all
+```
+- 仮想環境を指定するか、activateしてからupdateする
 
 ## トラブル対応
 ### パッケージを強制的に入れ直す
