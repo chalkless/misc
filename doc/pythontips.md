@@ -152,3 +152,40 @@ file_ext = os.path.splitext(file_in)
 
 file_out = str(file_base)+".out"+str(file_ext[1])     ← file_baseの部分がファイル名の拡張子を除いた部分。`file_ext[1]`が拡張子の部分
 ```
+
+## JSONファイルの処理
+```
+#!/usr/bin/env python3
+
+import sys
+import json
+
+# 引数チェック
+if len(sys.argv) < 2:
+    print("使い方: python script.py <jsonファイル>")
+    sys.exit(1)
+
+file_name = sys.argv[1]
+
+# JSON読み込み
+with open(file_name, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+    cbb = data["cbb"]["total"]
+	print(cbb)
+```
+
+- こんなJSONを処理している想定
+```
+{
+  "created_date": "2026-04-21T21:58:06.332651",
+  "version": "20260413",
+  "cbb": {
+    "total": 0.23076923076923078,
+    "steps": {
+      "1": {
+        "score": 0.0,
+		...
+```
+- jsonライブラリで読み込めちゃうよ、がキモ。ファイルから読むときは`load`、APIなどで読んで文字列として変数に入っているものをJSONとして処理する場合は`loads`
+- 処理の部分は、上の「dic型データのarrayの処理」も参照
