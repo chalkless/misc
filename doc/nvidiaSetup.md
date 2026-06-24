@@ -90,6 +90,7 @@ sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt update
 sudo apt install cuda-toolkit-13-0
 ```
+  - 
 - .bashrcに追加
 ```
 export PATH="/usr/local/cuda/bin:$PATH"
@@ -97,7 +98,7 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 ```
 - 再起動する
 - `nvidia-smi`できちんと出るか確認
-- nvccでの確認
+### nvccでの確認
 ```
 $ nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -106,7 +107,13 @@ Built on Wed_Aug_20_01:58:59_PM_PDT_2025
 Cuda compilation tools, release 13.0, V13.0.88
 Build cuda_13.0.r13.0/compiler.36424714_0
 ```
-
+- 出ないとき（再インストール時など）
+```
+$ nvcc -V
+Command 'nvcc' not found, but can be installed with:
+sudo apt install nvidia-cuda-toolkit
+```
+cudaのインストールで出てくるコマンドと違うのだが、上のインストールのセクションで書かれたものを実行すれば大丈夫そう
 
 ## 関連するドライバなどのアンインストール
 ```
