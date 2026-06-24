@@ -200,3 +200,23 @@ $ sudo systemctl restart smbd
 ```
 $ sudo ufw allow 'Samba'
 ```
+
+## wi-fiがつながらない
+- ログインした時に右上のwi-fiマークが出ない
+- マザボのスペックを見るに Intel® Wireless-AC 3168 というものらしい
+- 認識しているかチェック
+```
+$ lspci
+...
+```
+→ ない
+- 認識しているかチェック（別系統）
+```
+$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 003: ID 8087:0aa7 Intel Corp. Wireless-AC 3168 Bluetooth
+...
+```
+→ こっちか。。。って、AIに聞いたら、これは同じように見えるけどBluetoothの方だからwi-fiは認識してないって言われた
+- `sudo dmesg | grep -iE 'iwl|firmware|pci'`やれ、と言われる → それっぽいのは出ない。
+- 電源を切ってコンセントを抜いて放電させろ、と言われる → 今回はこれでうまくいった
