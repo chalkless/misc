@@ -220,3 +220,4 @@ Bus 001 Device 003: ID 8087:0aa7 Intel Corp. Wireless-AC 3168 Bluetooth
 → こっちか。。。って、AIに聞いたら、これは同じように見えるけどBluetoothの方だからwi-fiは認識してないって言われた
 - `sudo dmesg | grep -iE 'iwl|firmware|pci'`やれ、と言われる → それっぽいのは出ない。
 - 電源を切ってコンセントを抜いて放電させろ、と言われる → 今回はこれでうまくいった
+- wi-fiの省電力設定を無効にした方がいいとのことで設定変更：`/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf`で`wifi.powersave = 3`（有効）を2（無効）にする
