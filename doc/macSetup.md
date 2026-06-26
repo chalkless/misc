@@ -23,7 +23,16 @@ $ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
 # shellの設定
+## プロンプト
 - 多分、後で独立したページにすると思う
+- 初期設定
+```
+PROMPT='%n@%m %1~ %#'
+```
+```
+chalkless@stingray ~ % （1文字空いてここから）
+```
+- いつもの設定
 ```
 [.bashrc]
 PS1='\[\e[32m\]\u@\h:\w\$ \[\e[0m\]'
