@@ -101,9 +101,10 @@ import re
 medlinedate = "2019 May-Jun,"
 pattern = "\d{4}"
 
-date_matched = re.match(pattern, medlinedate)
+date_matched = re.search(pattern, medlinedate)
 year = date_matched.group()
 ```
+- 文字列全体から探す`re.search`の他に、先頭から合致するか探す`re.match`もある
 
 ## 0埋め
 ```
