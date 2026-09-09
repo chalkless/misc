@@ -30,21 +30,27 @@ cloudflared tunnel login
 - ブラウザではこのウインドウは消していいよ、と出る
 - サーバーのターミナル側では`~/cloudflared/cert.pem`が書き込まれる
 #### トンネルの作成
+- cloudflareのサイトに行く
+- Zero trust → Networks → Tunnels & Mesh
+- トンネル名を入れる
+- 指示に従って実行
 ```
-sudo cloudflared tunnel create <トンネル名>
+sudo cloudflared service install eyJhIjo...
 ```
-- なんかエラーが出たのだが
-```
-2026-09-09T14:58:32Z ERR Cannot determine default origin certificate path. No file cert.pem in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]. You need to specify the origin certificate path by specifying the origincert option in the configuration file, or set TUNNEL_ORIGIN_CERT environment variable originCertPath=
-failed to create tunnel: couldn't create client to talk to Cloudflare Tunnel backend: Error locating origin cert: client didn't specify origincert path
-```
-- ということで`originCertPath=`つけて実行 → また怒られた
-```
-$ sudo cloudflared tunnel create tunnelname originCertPath=~/.cloudflared
-"cloudflared tunnel create" requires exactly 1 argument, the name of tunnel to create.
-See 'cloudflared tunnel create --help'.
-```
+- ブラウザに戻って次のページへ
+- 情報を入れる。ネットワークを選択する。serviceはssh://localhost:22
 
+### クライアント側の設定
+- cloudflaredのインストール（Macの場合）
+```
+brew install cloudflared
+```
+- サーバー情報の設定：.ssh/configに以下を書く
+```
+Host <接続先>
+	HostName <ドメイン名>
+	ProxyCommand /opt/homebrew/bin/cloudflared access ssh --hostname %h
+```
 
 ## ngrokによる外部からのアクセス
 - あとで書く
