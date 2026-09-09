@@ -210,6 +210,10 @@ $ lspci
 ...
 ```
 → ない
+   - 本来なら次のように表示があるはず
+```
+04:00.0 Network controller: Intel Corporation Dual Band Wireless-AC 3168NGW [Stone Peak] (rev 10)
+```
 - 認識しているかチェック（別系統）
 ```
 $ lsusb
@@ -218,6 +222,19 @@ Bus 001 Device 003: ID 8087:0aa7 Intel Corp. Wireless-AC 3168 Bluetooth
 ...
 ```
 → こっちか。。。って、AIに聞いたら、これは同じように見えるけどBluetoothの方だからwi-fiは認識してないって言われた
-- `sudo dmesg | grep -iE 'iwl|firmware|pci'`やれ、と言われる → それっぽいのは出ない。
+- `sudo dmesg | grep -iE 'iwl|firmware|pci'`やれ、と言われる → それっぽいのは出ない。本来なら以下のように出ている
+```
+$ sudo dmesg | grep -iE 'iwl|firmware'
+[    2.911860] iwlwifi 0000:04:00.0: enabling device (0000 -> 0002)
+[    2.913536] iwlwifi 0000:04:00.0: Detected crf-id 0x0, cnv-id 0x0 wfpm id 0x0
+[    2.913546] iwlwifi 0000:04:00.0: PCI dev 24fb/2110, rev=0x220, rfid=0xd55555d5
+[    2.925286] iwlwifi 0000:04:00.0: loaded firmware version 29.198743027.0 3168-29.ucode op_mode iwlmvm
+[    2.981120] Bluetooth: hci0: Intel Bluetooth firmware file: intel/ibt-hw-37.8.10-fw-22.50.19.14.f.bseq
+[    3.066328] iwlwifi 0000:04:00.0: Detected Intel(R) Dual Band Wireless AC 3168, REV=0x220
+[    3.083004] iwlwifi 0000:04:00.0: base HW address: 8c:8d:28:10:4e:01, OTP minor version: 0x0
+[    3.123644] ieee80211 phy0: Selected rate control algorithm 'iwl-mvm-rs'
+[    3.136598] iwlwifi 0000:04:00.0 wlp4s0: renamed from wlan0
+[    7.191539] iwlwifi 0000:04:00.0: Registered PHC clock: iwlwifi-PTP, with index: 1
+```
 - 電源を切ってコンセントを抜いて放電させろ、と言われる → 今回はこれでうまくいった
 - wi-fiの省電力設定を無効にした方がいいとのことで設定変更：`/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf`で`wifi.powersave = 3`（有効）を2（無効）にする
