@@ -75,6 +75,26 @@ $ git init
     InsteadOf = git@github.com:
 ```
 
+## エラーメッセージ
+### Password authentication is not supported
+- パスワード認証はもうサポートされていないのである。GitHubでPersonal Access Token を得るやり方がある
+- GitHubにログイン
+- 右上のプロフィールアイコン → Settings
+- 左メニューの一番下 → Developer settings
+- Personal access tokens → Tokens (classic)
+- Generate new token → Generate new token (classic)
+- 設定項目：
+  - Note: SourceTree用 など分かりやすい名前
+  - Expiration: 90日または任意の期間
+  - Scopes: ☑️ repo（リポジトリ全体のアクセス権）にチェック
+  - Generate tokenをクリック
+- 生成されたトークンをコピー（⚠️ この画面を離れると二度と表示されません！）
+- プロジェクトフォルダに移動
+```
+cd /path/to/your/project
+git remote set-url origin https://USERNAME:TOKEN@github.com/USERNAME/REPOSITORY.git
+```
+
 
 ## 実際の利用編
 ### ローカルレポジトリにダウンロードしてくる
