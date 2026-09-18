@@ -23,7 +23,15 @@ $ grep -r score ./ -h --include=*.coverage.json | head
 ...
 ```
 
-
+### 連番のファイルをダウンロード
+- 通常パターン
+```
+curl -O "http://example.com/[001-100].jpg"
+```
+- ディレクトリ名が連番でファイル名が同じなど、ファイル名を変えたい場合
+```
+curl -o "image#1.jpg" "http://example.com/[001-100]/image.jpg"
+```
 
 ### マッチしたファイル名だけを表示/ファイル名は非表示
 ```
