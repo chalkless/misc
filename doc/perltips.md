@@ -37,6 +37,16 @@ if ($target =~ /$match/) {
 }
 ```
 
+### ワンライナーで各行を処理する
+- タブ区切りファイルの各行の処理（通常は while で書くもの）
+```
+perl -F"\t" -lane 'print $F[0]' input.txt
+```
+- タブ区切りファイルの各行を配列に入れて、最後にその配列をタブ区切りで出力する（while から抜けて処理したいとき）
+```
+perl -F"\t" -lane 'push @ele, $F[0]; END { print join("\t", @ele) }' input.txt
+```
+
 
 ### PostgreSQLとの連携
 ```
