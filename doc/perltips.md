@@ -66,9 +66,6 @@ my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die "æŽ
 
 my $sth = $dbh->prepare("SELECT * FROM $schema.$table");
 $sth->execute();
-#while (my @row = $sth->fetchrow_array()) {
-#    print "Column1: $row[0], Column2: $row[1]\n";
-#}
 my @row = $sth->fetchrow_array();
 print join("\t", @row)."\n";
 
