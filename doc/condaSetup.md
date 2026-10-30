@@ -96,9 +96,17 @@ $ conda config --set auto_activate_base false
 ```
 
 ## condaのアップデート
+- 公式には以下のように書いてある
 ```
 $ conda update -n base -c defaults conda
 ```
+- ↑ これだとbaseの仮想環境だけを指定している。
+- 実際には別の仮想環境のcondaもバージョンが上がるのだが
+```
+conda update conda
+```
+- 下の方に出てくる入れたライブラリ全部をアップデートする、というのでもアップデートはされる（けどこっちを最初にやった方がちゃんとアップデートした感は出そう）
+- 一度で全部が上がりきらないようなので、「All requested packages already installed.」と出るまで繰り返した方がいいだろう
 
 ## レポジトリの設定
 - いろいろなパッケージの配布元をレポジトリという
