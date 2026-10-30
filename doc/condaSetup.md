@@ -163,7 +163,7 @@ $ conda deactivate
 ### 仮想環境の削除
 - その1：仮想環境のパッケージを全部消す。結果的に空になるので仮想環境ごと消していいか聞かれる
 ```
-$ conda env -n blast --all   # blastを消す例
+$ conda remove -n blast --all   # blastを消す例
 ```
 - その2：仮想環境をまるごと消す
 ```
